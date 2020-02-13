@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Javascript - Add HTML Table Row </title>
+  <meta charset="windows-1252">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <!-- <script >
+    function addRow() {
+
+      var fname = document.getElementById('fname').value;
+      var lname = document.getElementById('lname').value;
+      var age = document.getElementById('age').value;
+       var cross= document.getElementById('cross');
+      var i=0;
+
+      if (fname==null||lname==null||fname==" "|| isNaN(age)) {
+        alert("Invalid input");
+
+      }
+
+      else if (isNaN(age) || age < 1 || age > 10000000 ) {
+        alert("Invalid input");
+      }
+
+      else{
+        var table = document.getElementsByTagName('table')[0];
+
+        var newRow = table.insertRow(table.rows.length);
+
+        var cel1 = newRow.insertCell(0);
+        var cel2 = newRow.insertCell(1);
+        var cel3 = newRow.insertCell(2);
+        var cel4 = newRow.insertCell(3);
+
+        cel1.innerHTML = fname;
+        cel2.innerHTML = lname;
+        cel3.innerHTML = age;
+        cel4.innerHTML = '<i onclick="delRow()" style="font-size:24px" id="cross" class="fa">&#xf00d;</i>';  
+
+    }
+
+    } -->
+
+  </script>
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Javascript - Add HTML Table Row </title>
+  <meta charset="windows-1252">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
+  
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<script >
+
+$(document).ready(function(){
+ 
+ $(".btn").click(function(){
+//    $("#success").show();
+ });
+
+ $(".btn").click(function(){
+    $("#success").fadeOut(1000);
+  });
+
+});
+
+    let count = 0;
+    function addRow() {
+    
+      var fname = document.getElementById('fname').value;
+      var lname = document.getElementById('lname').value;
+      var age = document.getElementById('age').value;
+       var cross= document.getElementById('cross');
+      var i=0;
+
+      if (isNaN(age) || fname&&!isNaN(fname)||lname&&!isNaN(lname)|| this.age==age) {
+        alert("Invalid input")
+
+      }
+
+    //   if(fname&&!isNaN(fname)){
+    //      alert("Title can't be a number");
+    //   }
+      
+    //   if(lname&&!isNaN(lname)){
+    //      alert("Author can't be a number");
+    //   }
+
+      else if ( isNaN(age) || age < 1 || age > 100000||fname==null || lname==null||age==null ) {
+        alert("Invalid input");
+      }
+    else if(fname==null && lname==null){
+        alert("Invalid input")        
+    }
+      else{
+        var table = document.getElementsByTagName('table')[0];
+
+        var newRow = table.insertRow(table.rows.length);
+        newRow.setAttribute("id", "MyClass"+count);
+        var cel1 = newRow.insertCell(0);
+        var cel2 = newRow.insertCell(1);
+        var cel3 = newRow.insertCell(2);
+        var cel4= newRow.insertCell(3);
+
+        cel1.innerHTML = fname;
+        cel2.innerHTML = lname;
+        cel3.innerHTML = age;
+        cel4.innerHTML = '<i  style="font-size:24px" id="cross" class="fa" onclick="remove('+count+')">&#xf00d;</i>';  
+        $("#success").show();
+          count++;
+        
+        }
+//     let age=[];
+
+//         {
+//                 // get value from the input text
+//                 var age = document.getElementById('age').value;
+
+//                 // append data to the array
+//                 age.push(inputText);
+//                 var age=document.getElementById("age").value;
+//                 var pval = "";
+
+//                 for(i = 0; i < age.length; i++)
+//                 {
+//                     pval = pval + age[i] + "<br/>";
+//                     if(age==pval[i]){
+//                       alert("Duplicates are not allowed");
+//                     }
+//                     else{
+//                       // print krne wala code
+
+//                       var table = document.getElementsByTagName('table')[0];
+
+// var newRow = table.insertRow(table.rows.length);
+// newRow.setAttribute("id", "MyClass"+count);
+// var cel1 = newRow.insertCell(0);
+// var cel2 = newRow.insertCell(1);
+// var cel3 = newRow.insertCell(2);
+// var cel4= newRow.insertCell(3);
+
+// cel1.innerHTML = fname;
+// cel2.innerHTML = lname;
+// cel3.innerHTML = age;
+// cel4.innerHTML = '<i  style="font-size:24px" id="cross" class="fa" onclick="remove('+count+')">&#xf00d;</i>';  
+// $("#success").show();
+//   count++;
+//                     }
+//                 }}
+
+
+   }
+
+    function remove(count) {
+        var row = document.getElementById('MyClass'+count);
+        row.remove()
+    
+    }
+
+  </script>
+  </head>
+
+  <body bgcolor="#ADD8E6">
+  
+    <center>
+  
+      <h2>
+        Add Book
+      </h2>
+      <hr>
+  
+      <p id="success" class="success">
+  
+        Success! Book Added!
+  
+      </p>
+  
+    </center>
+  
+    <center>
+      Title <input class="input" type="text" name="fname" id="fname" /><br /><br />
+      Author <input class="input" type="text" name="lname" id="lname" /><br /><br />
+      ISBN# <input class="input" type="text" name="age" id="age" /><br /><br />
+      <button class="btn" id="btn" onclick="addRow();">Add</button><br /><br />
+      
+    </center>
+  
+    <hr>
+    <center>
+      <table id="myTable">
+  
+        <tr>
+          <th>Book Title</th>
+          <th>Author</th>
+          <th>ISBN</th>
+          
+        </tr>
+  
+      </table>
+    </center>
+  </body>
+  
+  </html>
+  
+  <style>
+    p {
+  
+      background-color: green;
+      color: white;
+  
+    }
+  
+    .input {
+  
+      width: 340px;
+      margin-left: 80px;
+  
+    }
+  
+    .btn {
+  
+      width: 340px;
+     
+      margin-right: -115px;
+  
+    }
+  
+  .fa{
+  
+  background-color:#ADD8E6;
+  cursor: pointer;
+  color: blue;
+  
+}
+  
+  #lname{
+
+    margin-left: 67px;
+
+}
+  #age{
+
+margin-left: 67px;
+
+}
+
+.success{
+
+    display: none;
+}
+
+  </style>
